@@ -1,0 +1,19 @@
+data "aws_eks_cluster" "this" {
+  name = var.cluster_name
+}
+
+data "aws_eks_cluster_auth" "this" {
+  name = var.cluster_name
+}
+
+data "aws_secretsmanager_secret" "rds_secret" {
+  name = "${var.project}/${var.environment}"
+}
+
+data "aws_secretsmanager_secret_version" "rds_secret" {
+  secret_id = data.aws_secretsmanager_secret.rds_secret.id
+}
+
+data "aws_rds_cluster" "this" {
+  cluster_identifier = var.rds_id
+}
