@@ -12,7 +12,7 @@ locals {
 
 
 module "s3" {
-  source      = "git@github.com:jz-xie/python-mono.git//lib/terraform/s3"
+  source      = "git@github.com:jz-xie/terraform-helper.git/s3"
   bucket_name = local.bucket_name
   required_tags = {
     Classification = "Internal"
@@ -27,7 +27,7 @@ module "s3" {
 }
 
 module "rds" {
-  source                 = "git@github.com:jz-xie/python-mono.git//lib/terraform/rds"
+  source                 = "git@github.com:jz-xie/terraform-helper.git/rds"
   app                    = "prefect"
   environment            = var.environment
   cluster_name           = var.cluster_name
